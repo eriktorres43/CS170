@@ -9,17 +9,17 @@ SID: 862462457
 Email: etorr153@ucr.edu
 Date: Feb-13-2026
 
-# **In this assignment, I used:
+# **In this assignment, I used:**
 
 * The Blind and Heuristic Search Slides from lecture for Misplaced Tiles, Manhattan Distance heuristics, and General Search Algorithm
 * The sample report for format/structure, examples, and outputs
 * Used Google sheets to make graphs shown in this report (with respective data), found here: https://docs.google.com/spreadsheets/d/1aQwhdXz5Vfp8FELFRZrcspTuOqoRksQJTPJAODlMnOY/edit?usp=sharing
 
-# **Parts of the code that are unoriginal/used for help are:
+# **Parts of the code that are unoriginal/used for help are:**
 
 * CPlusPlus website for libraries and functions, in particular, time/clock and priority queue’s: https://cplusplus.com/reference/ctime/ https://cplusplus.com/reference/queue/priority_queue/priority_queue/
 
-*Compiler help by providing a fix/format to the priority queue (compare property) when doing it incorrectly the first time (seen below):
+* Compiler help by providing a fix/format to the priority queue (compare property) when doing it incorrectly the first time (seen below):
 
 <img width="992" height="175" alt="Screenshot 2026-02-13 at 5 04 00 PM" src="https://github.com/user-attachments/assets/dd288fd9-1c07-4137-849e-a8a443a68107" />
 
@@ -50,10 +50,8 @@ Code: Pages 10 - 12, code can also be found on github (for convenience and compi
   
   A* Misplaced Tiles Heuristic is similar to Uniform Cost Search, but instead of the heuristic being 0, we now find the heuristic by counting how many tiles in the current state are in the wrong position, relative to the goal state (excluding 0). Hence, f(n) = g(n) + h(n), where h(n) ≥ 0, only expands the cheapest node. In a visual sense, we take two 8 puzzles, the current state and the goal state, and compare the values in each position. For instance:
  
-   Current State                   Goal State
-      1 5 4                          1 2 3  
-      8 0 3                          4 5 6
-      2 6 7                          7 8 0
+<img width="1046" height="223" alt="Screenshot 2026-02-13 at 6 44 59 PM" src="https://github.com/user-attachments/assets/1fa1d16a-1db0-43de-82d6-1576fb99017c" />
+
 
   All but position 1 are incorrect, so our heuristic/h(n) would be 7 (excluding 0). We know that “... heuristic tells us approximately how far the state is from the goal state” [4], so the smaller the number, the better. Since we’re not at the goal state, we expand. The queueing function will have: up (f(n) = 1 + 6), left, right and down (all 3 with f(n) = 1 + 7), popping the top with each expansion and smallest f(n) on top. We repeat until we reach the goal state (not expanding repeat puzzles).
 
