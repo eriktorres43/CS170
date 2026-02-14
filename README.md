@@ -14,7 +14,7 @@ Date: Feb-13-2026
 
 # **In this assignment, I used:**
 
-* The Blind and Heuristic Search Slides from lecture for Misplaced Tiles, Manhattan Distance heuristics, and General Search Algorithm
+* The Blind and Heuristic Search Slides from the lecture for A* Misplaced Tiles and Manhattan Distance heuristics, and General Search Algorithm
 * The sample report for format/structure, examples, and outputs
 * Used Google sheets to make graphs shown in this report (with respective data), found here: https://docs.google.com/spreadsheets/d/1aQwhdXz5Vfp8FELFRZrcspTuOqoRksQJTPJAODlMnOY/edit?usp=sharing
 
@@ -49,7 +49,7 @@ Code found in the main.cpp file in this repository
 
 # **Uniform Cost Search:** 
   
-   For Uniform Cost Search, the intuition of the algorithm is to “Expand the cheapest node. Where the cost is the cost path g(n)” [2]. We are still using the A* algorithm since “Uniform Cost Search is just A* with h(n) hardcoded to equal zero” [3], so f(n) = g(n) + h(n) = g(n). For all 3 algorithms, we assume the path to each node costs 1 unit, so here we queue and expand nodes given depth, also known as Breadth-First Search. 
+   For Uniform Cost Search, the intuition of the algorithm is to “Expand the cheapest node. Where the cost is the cost path g(n)” [2]. We are still using the A* algorithm since “Uniform Cost Search is just A* with h(n) hardcoded to equal zero” [3], so f(n) = g(n) + h(n) = g(n). For all 3 algorithms, we assume the path to each node costs 1 unit, so here we queue and expand nodes at each depth (one by one), also known as Breadth-First Search, not expanding repeated puzzles to save time and memory.  
 
 [2]  2__Blind Search_part2 (Eammon Keogh, 2026, UCR, Slides/Dropbox)
 
@@ -60,19 +60,19 @@ Code found in the main.cpp file in this repository
   
    A* Misplaced Tiles Heuristic is similar to Uniform Cost Search, but instead of the heuristic being 0, we now find the heuristic by counting how many tiles in the current state are in the wrong position, relative to the goal state (excluding 0). Hence, f(n) = g(n) + h(n), where h(n) ≥ 0, only expands the cheapest node. In a visual sense, we take two 8 puzzles, the current state and the goal state, and compare the values in each position. For instance:
  
-<img width="1046" height="223" alt="Screenshot 2026-02-13 at 6 44 59 PM" src="https://github.com/user-attachments/assets/1fa1d16a-1db0-43de-82d6-1576fb99017c" />
+ <img width="1110" height="246" alt="Screenshot 2026-02-13 at 11 14 24 PM" src="https://github.com/user-attachments/assets/8c23a8ff-b4df-4635-bcb5-a607b24afb93" />
 
-   All but position 1 are incorrect, so our heuristic/h(n) would be 7 (excluding 0). We know that “... heuristic tells us approximately how far the state is from the goal state” [4], so the smaller the number, the better. Since we’re not at the goal state, we expand. The queueing function will have: up (f(n) = 1 + 6), left, right and down (all 3 with f(n) = 1 + 7), popping the top with each expansion and having the smallest f(n) on top. We repeat this process until we reach the goal state (not expanding repeat puzzles).
-  
-  [4]  3__Heuristic Search (Eammon Keogh, 2026, UCR, Slides/Dropbox)
+   All but position 1 are incorrect, so our heuristic/h(n) would be 7 (excluding 0). We know that “... heuristic tells us approximately how far the state is from the goal state” [4], so the smaller the number, the better. Since we’re not at the goal state, we expand. The queueing function will have: up (f(n) = 1 + 6), left, right and down (all 3 with f(n) = 1 + 7), popping the top with each expansion and having the smallest f(n) on top of the queue. We repeat this process until we reach the goal state, not expanding repeated puzzles to save time and memory.
+
+[4]  3__Heuristic Search (Eammon Keogh, 2026, UCR, Slides/Dropbox)
 
 # **A\* Manhattan Distance Heuristic:**
 
    For A* Manhattan Distance Heuristic, similarly to A* Misplaced Tiles Heuristic, it determines the incorrectly placed tiles, relative to the goal state (excluding 0), but now calculates how many valid moves it takes to get to the correct position. In a visual sense, we take two 8 puzzles, the current state and the goal state, and compare the values in each position, where we move the incorrect values to the correct position, with valid moves only.  For instance:
- 
+
 <img width="1133" height="491" alt="Screenshot 2026-02-13 at 6 37 58 PM" src="https://github.com/user-attachments/assets/9fc447ff-4dd0-4043-9d3e-3f3e0830bd4f" />
 
-   All are correct, but positions 3 and 8. Moving both states 3 and 8 takes three moves to get into the correct position, so our heuristic/h(n) would be 3+3 = 6. Since we’re not at the goal state, we expand. The queueing function will have: left (f(n) = 1 + 5) and up (f(n) = 1 + 7), popping the top with each expansion, with the smallest f(n) on top. We repeat this process until we reach the goal state (not expanding repeat puzzles).
+   All are correct, but positions 3 and 8. Moving both states 3 and 8 takes three moves to get into the correct position, so our heuristic/h(n) would be 3+3 = 6. Since we’re not at the goal state, we expand. The queueing function will have: left (f(n) = 1 + 5) and up (f(n) = 1 + 7), popping the top with each expansion, with the smallest f(n) on top of the queue. We repeat this process until we reach the goal state, not expanding repeated puzzles to save time and memory.
 
 # **Comparing the Algorithms:** 
 	
@@ -84,30 +84,31 @@ Code found in the main.cpp file in this repository
 
 <img width="742" height="464" alt="Screenshot 2026-02-13 at 1 28 04 PM" src="https://github.com/user-attachments/assets/b25d3573-3d68-4d70-aa92-76dbcd149af8" />
 
-   What we can interpret from the graph is, the smaller the solution depth is, the more the algorithms/nodes expanded will behave similarly; however, this is not the case when the depth increases. Uniform Cost Search quickly expands nodes past depth 8, whereas A* Misplaced Tiles heuristic and A* Manhattan Distance heuristic begin past depth 12 and 20, respectively. For example, past depth 12, A* Manhattan Distance heuristic is 267% and 5288% (or more, depending on depth) effective than A* Misplaced Tiles heuristic and Uniform Cost Search, respectively. A* Misplaced Tiles heuristic is 1978% (or more, depending on depth) effective against Uniform Cost Search, leaving Uniform Cost Search as the worst.
+   What we can interpret from the graph is, the smaller the solution depth is, the more the algorithms/nodes expanded will behave similarly; however, this is not the case when the depth increases. Uniform Cost Search quickly expands nodes past depth 8, whereas A* Misplaced Tiles heuristic and A* Manhattan Distance heuristic begin past depth 12 and 20, respectively. For example, past depth 12, A* Manhattan Distance heuristic is 267% and 5288% (or more, depending on depth) effective than A* Misplaced Tiles heuristic and Uniform Cost Search, respectively. A* Misplaced Tiles heuristic is 1978% (or more, depending on depth) effective against Uniform Cost Search, leaving Uniform Cost Search as the most ineffective.
 
 # **Next, let’s look at the Max Queue Size**:
 
 <img width="811" height="500" alt="Screenshot 2026-02-13 at 1 28 23 PM" src="https://github.com/user-attachments/assets/b164aa18-6a56-4d99-8d31-8a7b49433afd" />
 
-   What we can interpret from this graph is that, similar to Expanded Nodes, the max queue size behaves similarly in lower depths but not in higher depths. Here, Uniform Cost Search quickly grows the max queue size past depth 8, whereas A* Misplaced Tiles heuristic and A* Manhattan Distance heuristic are past 12 and 20, respectively. For example, past depth 12, A* Manhattan Distance heuristic is 226% and 4030% (or more, depending on depth) smaller than A* Misplaced Tiles heuristic and Uniform Cost Search. A* Misplaced Tiles heuristic is 1785% (or more, depending on depth) smaller than Uniform Cost Search, leaving Uniform Cost Search with the worst result (as seen in the graph).
+   What we can interpret from this graph is that, similar to Expanded Nodes, the max queue size behaves similarly in lower depths but not in higher depths solutions. Here, Uniform Cost Search quickly grows the max queue size past depth 8, whereas A* Misplaced Tiles heuristic and A* Manhattan Distance heuristic are past 12 and 20, respectively. For example, past depth 12, A* Manhattan Distance heuristic is 226% and 4030% (or more, depending on depth) smaller than A* Misplaced Tiles heuristic and Uniform Cost Search. A* Misplaced Tiles heuristic is 1785% (or more, depending on depth) smaller than Uniform Cost Search, leaving Uniform Cost Search with the worst result (as seen in the graph).
 
 # **Finally, let’s look at the Runtime**:
 
 <img width="599" height="371" alt="Screenshot 2026-02-13 at 1 28 49 PM" src="https://github.com/user-attachments/assets/78d04fe0-b438-4d66-be1d-13a4ab9986db" />
 
-   What we can interpret from this graph, similar to Expanded Nodes and Max Queue Size, is that at lower solution depths, the algorithms behave similarly and at higher solution depths, the differences become glaring. In this case, Uniform Cost Search majorly differs first at depth 12 compared to A* Misplaced Tiles heuristic and A* Manhattan Distance heuristic, at depth 16 and 24, respectively. For example, past depth 12, A* Manhattan Distance heuristic is 150% and 10000% (or more, depending on depth) faster than. A* Misplaced Tiles heuristic and Uniform Cost Search, respectively. A* Misplaced Tiles heuristic is 6667% (or more, depending on depth) faster than Uniform Cost Search, leaving Uniform Cost Search as the worst result (as seen in the graph).
+   What we can interpret from this graph, similar to Expanded Nodes and Max Queue Size, is that at lower solution depths, the algorithms behave similarly and at higher solution depths, the differences become glaring. In this case, Uniform Cost Search majorly differs first at depth 12 compared to A* Misplaced Tiles heuristic and A* Manhattan Distance heuristic, at depth 16 and 24, respectively. For example, past depth 12, A* Manhattan Distance heuristic is 150% and 10000% (or more, depending on depth) faster than A* Misplaced Tiles heuristic and Uniform Cost Search, respectively. A* Misplaced Tiles heuristic is 6667% (or more, depending on depth) faster than Uniform Cost Search, leaving Uniform Cost Search as the worst result (as seen in the graph).
 
 # **Conclusion**: 
 	
-   Now that we have looked at the 3 given categories for all three algorithms, one conclusion we can make is that Uniform Cost Search generally performs the worst for all 3 categories past depth 2 compared to A* Misplaced Tiles heuristic and A* Manhattan Distance heuristic. But when comparing the two A* algorithms, A* Misplaced Tiles heuristic and A* Manhattan Distance heuristic, it is a bit harder to do. When looking at the 3 categories, we can see that they have many similarities in lower depths (i.e., below depth 12) for all 3 categories; but as we go deeper and deeper to find a solution, we can see that A* Manhattan Distance is the better/efficient algorithm because it expands fewer nodes, using less memory, leading to a smaller queue size and therefore a faster algorithm compared to Uniform Cost Search and A* Misplaced Tiles heuristic. 
+   Now that we have looked at the 3 given categories for all three algorithms, one conclusion we can make is that Uniform Cost Search generally performs the worst for all 3 categories past depth 2 compared to A* Misplaced Tiles heuristic and A* Manhattan Distance heuristic. But when comparing the two A* algorithms, A* Misplaced Tiles heuristic and A* Manhattan Distance heuristic, it is a bit harder to do. When looking at the 3 categories, we can see that they have many similarities in lower depths (i.e., below depth 12) for all 3 categories; but as we go deeper and deeper to find a solution, we can see that A* Manhattan Distance is the better/efficient algorithm because it expands fewer nodes, uses less memory, leading to a smaller queue size and therefore a faster algorithm compared to Uniform Cost Search and A* Misplaced Tiles heuristic. 
    
    Therefore, if attempting to solve this problem again, or giving advice to others, I would recommend they use/solve this problem with the A* Manhattan Distance heuristic algorithm, as it performs the same (below depth 12) and better (at or past depth 12) compared to the other algorithms, while saving memory and time.
 
 
+
 # **Examples**: 
 
-  The next two pages contain examples of what the menu and output should present to the user. There are Easy and Hard puzzle examples below:
+   The next two pages contain examples of what the menu and output should present to the user. There are Easy and Hard puzzle examples below:
 
 This is an example and output for an Easy Puzzle (Depth 4): 
 
