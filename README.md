@@ -55,7 +55,7 @@ Code found in the main.cpp file in this repository
 [3]  Project_1_The_Eight_Puzzle_CS_170_2026 (Eammon Keogh, 2026, UCR, Slides/Dropbox)
 
 
-# **A* Misplaced Tiles Heuristic:** 
+# ** A* Misplaced Tiles Heuristic: ** 
   
   A* Misplaced Tiles Heuristic is similar to Uniform Cost Search, but instead of the heuristic being 0, we now find the heuristic by counting how many tiles in the current state are in the wrong position, relative to the goal state (excluding 0). Hence, f(n) = g(n) + h(n), where h(n) ≥ 0, only expands the cheapest node. In a visual sense, we take two 8 puzzles, the current state and the goal state, and compare the values in each position. For instance:
  
@@ -63,8 +63,10 @@ Code found in the main.cpp file in this repository
 
 
   All but position 1 are incorrect, so our heuristic/h(n) would be 7 (excluding 0). We know that “... heuristic tells us approximately how far the state is from the goal state” [4], so the smaller the number, the better. Since we’re not at the goal state, we expand. The queueing function will have: up (f(n) = 1 + 6), left, right and down (all 3 with f(n) = 1 + 7), popping the top with each expansion and smallest f(n) on top. We repeat until we reach the goal state (not expanding repeat puzzles).
+  
+  [4]  3__Heuristic Search (Eammon Keogh, 2026, UCR, Slides/Dropbox)
 
-# **A* Manhattan Distance Heuristic:**
+# ** A* Manhattan Distance Heuristic: **
 
   For A* Manhattan Distance Heuristic, similarly to A* Misplaced Tiles Heuristic, determines the incorrectly placed tiles, relative to the goal state (excluding 0), but now calculates how many valid moves it takes to get to the correct position. In a visual sense, we take two 8 puzzles, the current state and the goal state, and compare the values in each position, where we move the incorrect values to the correct position, with valid moves only.  For instance:
  
@@ -76,8 +78,10 @@ Code found in the main.cpp file in this repository
 	
   The algorithms information above can help create a hypothesis that A* Manhattan Distance heuristic will generally perform the best, followed by A* Misplaced Tiles heuristic, since A*’s runtime “... [d]epends on the quality of the heuristic” [5]. To test this hypothesis, we’ll compare the algorithms in 3 areas: nodes expanded, max queue size, and runtime to see how efficient the algorithms were for this project, through graphs (made from the test cases in the project PDF). 
 
+[5]  3__Heuristic Search (Eammon Keogh, 2026, UCR, Slides/Dropbox)
 
-# **First, let’s look at Nodes Expanded:**
+
+# ** First, let’s look at Nodes Expanded: **
 
 <img width="742" height="464" alt="Screenshot 2026-02-13 at 1 28 04 PM" src="https://github.com/user-attachments/assets/b25d3573-3d68-4d70-aa92-76dbcd149af8" />
 
