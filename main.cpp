@@ -28,7 +28,6 @@ class TreeNode {
 
 // Used CPlusPlus/Compilier for help with this part, setting up the priority queue
 
-priority_queue<TreeNode*, vector<TreeNode*>, Priority_Queue_Sorting> working_queue;
 class Priority_Queue_Sorting {
     public: 
     bool operator() (TreeNode* puzzle_1, TreeNode* puzzle_2) {
@@ -261,6 +260,7 @@ bool Repeat_State(vector<vector<int>>& repeat, TreeNode* current) {
 }
 
 TreeNode* general_search(const vector<int>& puzzle, int algorithm, TreeNode* current) { 
+    priority_queue<TreeNode*, vector<TreeNode*>, Priority_Queue_Sorting> working_queue; // Used CPlusPlus/Compilier for help with this part, setting up the priority queue
     int heuristic, nodes_expanded = 0, max_queue_size = 0;
     vector<vector<int>> repeat;
     
