@@ -55,7 +55,7 @@ Code found in the main.cpp file in this repository
 [3]  Project_1_The_Eight_Puzzle_CS_170_2026 (Eammon Keogh, 2026, UCR, Slides/Dropbox)
 
 
-# ** A* Misplaced Tiles Heuristic: ** 
+# **A\* Misplaced Tiles Heuristic:** 
   
   A* Misplaced Tiles Heuristic is similar to Uniform Cost Search, but instead of the heuristic being 0, we now find the heuristic by counting how many tiles in the current state are in the wrong position, relative to the goal state (excluding 0). Hence, f(n) = g(n) + h(n), where h(n) ≥ 0, only expands the cheapest node. In a visual sense, we take two 8 puzzles, the current state and the goal state, and compare the values in each position. For instance:
  
@@ -66,7 +66,7 @@ Code found in the main.cpp file in this repository
   
   [4]  3__Heuristic Search (Eammon Keogh, 2026, UCR, Slides/Dropbox)
 
-# ** A* Manhattan Distance Heuristic: **
+# **A\* Manhattan Distance Heuristic:**
 
   For A* Manhattan Distance Heuristic, similarly to A* Misplaced Tiles Heuristic, determines the incorrectly placed tiles, relative to the goal state (excluding 0), but now calculates how many valid moves it takes to get to the correct position. In a visual sense, we take two 8 puzzles, the current state and the goal state, and compare the values in each position, where we move the incorrect values to the correct position, with valid moves only.  For instance:
  
@@ -81,7 +81,7 @@ Code found in the main.cpp file in this repository
 [5]  3__Heuristic Search (Eammon Keogh, 2026, UCR, Slides/Dropbox)
 
 
-# ** First, let’s look at Nodes Expanded: **
+# **First, let’s look at Nodes Expanded:**
 
 <img width="742" height="464" alt="Screenshot 2026-02-13 at 1 28 04 PM" src="https://github.com/user-attachments/assets/b25d3573-3d68-4d70-aa92-76dbcd149af8" />
 
