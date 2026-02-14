@@ -5,8 +5,11 @@ This is the first project in Introduction to Artifical Intellegence by Dr. Eammo
 Full Report Below: 
 
 Erik Torres
+
 SID: 862462457
+
 Email: etorr153@ucr.edu
+
 Date: Feb-13-2026
 
 # **In this assignment, I used:**
