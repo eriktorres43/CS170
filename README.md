@@ -29,10 +29,14 @@ Date: Feb-13-2026
 # **Outline of this Report:**
 
 Cover Page: Page 1
+
 Report: Pages 2 - 6
+
 Easy Problem Example: Page 7
+
 Hard Problem Example: Page 8
-Code: Pages 10 - 12, code can also be found on github (for convenience and compiling): 
+
+Code found in the main.cpp file in this repository
 
 # **Introduction:**
   
@@ -45,7 +49,9 @@ Code: Pages 10 - 12, code can also be found on github (for convenience and compi
   For Uniform Cost Search, the intuition of the algorithm is to “Expand the cheapest node. Where the cost is the cost path g(n)” [2]. We are still using the A* algorithm, but “Uniform Cost Search is just A* with h(n) hardcoded to equal zero” [3]. So, f(n) = g(n) + h(n) = g(n). Here, we assume the path to each node costs 1 unit, so the order the nodes are queued is the order they are expanded, also called Breadth-First Search. 
 
 [1]  3__Heuristic Search (Eammon Keogh, 2026, UCR, Slides/Dropbox)
+
 [2]  2__Blind Search_part2 (Eammon Keogh, 2026, UCR, Slides/Dropbox)
+
 [3]  Project_1_The_Eight_Puzzle_CS_170_2026 (Eammon Keogh, 2026, UCR, Slides/Dropbox)
 
 
